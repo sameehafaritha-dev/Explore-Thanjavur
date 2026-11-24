@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explore Tanjore – Heritage of Tamil Nadu</title>
+<meta name="description" content="Brihadeeswarar Temple, Maratha Palace, Tanjore paintings, festivals, food and a travel guide for Thanjavur, Tamil Nadu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --granite:#2a2623; --ink:#1e2220; --stone:#ecebe5; --paper:#f8f7f3;
+  --gold:#b8862b; --delta:#234a3f; --kumkum:#8c2a2a; --line:#d6d3c8;
+  --serif:'Marcellus','Georgia',serif; --sans:'Source Sans 3','Segoe UI',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;font-size:17px}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
+
+/* header */
+.topbar{background:var(--granite);color:#e9e3d6;font-size:14px}
+.topbar .wrap{display:flex;justify-content:space-between;gap:16px;padding:8px 0;flex-wrap:wrap}
+header.nav{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+header.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:68px}
+.brand{font-family:var(--serif);font-size:22px;text-decoration:none;color:var(--granite);white-space:nowrap}
+nav ul{display:flex;gap:22px;list-style:none;flex-wrap:wrap;justify-content:flex-end}
+nav a{text-decoration:none;font-size:15px;font-weight:600;padding:4px 0;border-bottom:2px solid transparent}
+nav a:hover{border-color:var(--gold)}
+
+/* photo slot: shows photo, or a painted fallback with caption so no area is ever empty */
+.ph{position:relative;overflow:hidden;background:var(--granite);aspect-ratio:4/3;margin:0}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph::after{content:attr(data-cap);position:absolute;inset:0;display:none;align-items:flex-end;padding:16px;color:#f3ead6;font-family:var(--serif);font-size:18px;
+  background:
+   repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 2px,transparent 2px 28px),
+   linear-gradient(160deg,var(--granite),var(--delta))}
+.ph.nophoto::after{display:flex}
+.ph.nophoto img{display:none}
+
+/* hero */
+.hero{position:relative;color:#fff;min-height:560px;display:flex;align-items:flex-end}
+.hero .ph{position:absolute;inset:0;aspect-ratio:auto}
+.hero .ph::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(20,17,15,.85),rgba(20,17,15,.15) 70%)}
+.hero .wrap{position:relative;z-index:2;padding:0 0 56px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.5vw,64px);line-height:1.1;max-width:14em}
+.hero p{margin:14px 0 26px;font-size:19px;max-width:34em;color:#efe8d8}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 22px;border:2px solid var(--gold);background:var(--gold);color:#1a1209;font-weight:700;text-decoration:none;border-radius:3px;cursor:pointer;font:inherit;font-weight:700}
+.btn.alt{background:transparent;color:#fff}
+.btn:hover{filter:brightness(1.08)}
+
+.facts{background:var(--granite);color:#f3ead6}
+.facts .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.facts div{padding:22px 20px;border-left:1px solid rgba(255,255,255,.15)}
+.facts div:first-child{border-left:0;padding-left:0}
+.facts b{display:block;font-family:var(--serif);font-size:28px;font-weight:400;color:#e2b869}
+.facts span{font-size:15px}
+
+/* sections */
+section{padding:84px 0}
+section:nth-of-type(even){background:var(--stone)}
+.head{max-width:720px;margin-bottom:36px}
+.head h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.6vw,40px);line-height:1.15;color:var(--granite);margin-bottom:10px}
+.head p{color:#454a47}
+.grid{display:grid;gap:24px;grid-template-columns:repeat(3,1fr)}
+.card{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column}
+.card .body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{font-family:var(--serif);font-weight:400;font-size:21px;color:var(--granite);line-height:1.25}
+.card p{font-size:15.5px;color:#454a47}
+.tag{font-size:13.5px;font-weight:600;color:var(--delta)}
+.meta{margin-top:auto;padding-top:10px;font-size:14px;color:#6b6f6a}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.filters button{font:inherit;font-size:14.5px;font-weight:600;padding:7px 16px;border:1px solid var(--granite);background:transparent;color:var(--granite);border-radius:30px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--granite);color:#fff}
+
+/* events as dated rows */
+.event{flex-direction:row}
+.event .ph{width:42%;aspect-ratio:auto;min-height:190px;flex:none}
+.event .date{font-family:var(--serif);color:var(--kumkum);font-size:15px}
+.events{grid-template-columns:repeat(2,1fr)}
+
+/* gallery */
+.gallery{grid-template-columns:repeat(4,1fr);gap:14px}
+.gallery .ph{aspect-ratio:1/1;cursor:zoom-in}
+.gallery .ph:hover img{transform:scale(1.04)}
+.gallery img{transition:transform .3s}
+.lightbox{position:fixed;inset:0;background:rgba(15,12,10,.92);display:none;align-items:center;justify-content:center;z-index:50;padding:24px}
+.lightbox.on{display:flex}
+.lightbox .ph{width:min(900px,100%);aspect-ratio:4/3;cursor:default}
+.lightbox button{position:absolute;top:18px;right:22px;background:none;border:0;color:#fff;font-size:34px;cursor:pointer}
+
+/* travel */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.steps .card h3{font-size:19px}
+.season .card .body p{margin-bottom:4px}
+.deg{font-family:var(--serif);color:var(--gold);font-size:22px}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start}
+form{display:grid;gap:16px;background:#fff;border:1px solid var(--line);padding:28px}
+label{display:grid;gap:6px;font-weight:600;font-size:15px}
+input,select,textarea{font:inherit;padding:10px 12px;border:1px solid #b9b5a8;background:var(--paper);border-radius:3px;width:100%}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.help{list-style:none;display:grid;gap:0;margin-top:18px;border-top:1px solid var(--line)}
+.help li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.help b{font-variant-numeric:tabular-nums}
+#msg{font-weight:600;color:var(--delta)}
+
+footer{background:var(--granite);color:#d9d2c3;padding:48px 0 28px;font-size:15px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+footer h4{font-family:var(--serif);font-weight:400;color:#e2b869;font-size:18px;margin-bottom:10px}
+footer a{display:block;text-decoration:none;padding:2px 0}
+footer a:hover{text-decoration:underline}
+.copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.15);padding-top:18px;margin-top:8px}
+
+@media (max-width:960px){
+  .grid,.steps{grid-template-columns:repeat(2,1fr)}
+  .gallery{grid-template-columns:repeat(3,1fr)}
+  .events,.contact,footer .wrap{grid-template-columns:1fr}
+  .facts .wrap{grid-template-columns:repeat(2,1fr)}
+  .facts div:nth-child(3){border-left:0;padding-left:0}
+  header.nav .wrap{height:auto;padding:10px 0;flex-direction:column;align-items:flex-start;gap:6px}
+  nav ul{justify-content:flex-start;gap:14px}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  section{padding:56px 0}
+  .grid,.steps,.two{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .event{flex-direction:column}.event .ph{width:100%;aspect-ratio:4/3}
+  .hero{min-height:480px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap"><span>Tourist helpline (toll-free): 1800-4253-1111</span><span>Thanjavur, Tamil Nadu</span></div></div>
+
+<header class="nav"><div class="wrap">
+  <a class="brand" href="#home">Explore Tanjore</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="#home">Home</a></li><li><a href="#attractions">Attractions</a></li><li><a href="#events">Events</a></li>
+    <li><a href="#culture">Culture</a></li><li><a href="#food">Food</a></li><li><a href="#gallery">Gallery</a></li>
+    <li><a href="#travel-guide">Travel Guide</a></li><li><a href="#contact">Contact</a></li>
+  </ul></nav>
+</div></header>
+
+<main>
+<div class="hero" id="home">
+  <figure class="ph" data-cap="Brihadeeswarar Temple, Thanjavur"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Brihadisvara%20Temple%2C%20Thanjavur%20(50074283751).jpg?width=1600" data-f="hero-brihadeeswarar.jpg" alt="Brihadeeswarar Temple, Thanjavur" referrerpolicy="no-referrer"></figure>
+  <div class="wrap">
+    <h1>Thanjavur, where Chola stone still stands</h1>
+    <p>A UNESCO World Heritage city of temples, royal palaces, gold-foil paintings and Kaveri delta food.</p>
+    <div class="btns"><a class="btn" href="#attractions">Explore places</a><a class="btn alt" href="#travel-guide">Plan your trip</a></div>
+  </div>
+</div>
+
+<div class="facts"><div class="wrap">
+  <div><b>1010 CE</b><span>Big Temple consecrated</span></div>
+  <div><b>216 ft</b><span>Granite vimana tower</span></div>
+  <div><b>8+</b><span>Heritage monuments</span></div>
+  <div><b>5 GI tags</b><span>Art, veena, dolls, silk</span></div>
+</div></div>
+
+<section id="attractions"><div class="wrap">
+  <div class="head"><h2>Iconic attractions</h2><p>Temples, palaces, libraries and gardens left by the Cholas, Nayaks and Marathas.</p></div>
+  <div class="grid" id="attrGrid"></div>
+</div></section>
+
+<section id="events"><div class="wrap">
+  <div class="head"><h2>Festivals and events</h2><p>Temple car processions, Carnatic music and classical dance through the year.</p></div>
+  <div class="grid events" id="evGrid"></div>
+</div></section>
+
+<section id="culture"><div class="wrap">
+  <div class="head"><h2>Culture and crafts</h2><p>Four crafts that carry the city's name around the world.</p></div>
+  <div class="grid" id="cultGrid" style="grid-template-columns:repeat(2,1fr)"></div>
+</div></section>
+
+<section id="food"><div class="wrap">
+  <div class="head"><h2>Food of the Kaveri delta</h2><p>Banana leaf meals, filter coffee and sweets worth the detour.</p></div>
+  <div class="grid" id="foodGrid"></div>
+</div></section>
+
+<section id="gallery"><div class="wrap">
+  <div class="head"><h2>Gallery</h2><p>Select a photo to view it larger.</p></div>
+  <div class="filters" id="filters"></div>
+  <div class="grid gallery" id="galGrid"></div>
+</div></section>
+
+<section id="travel-guide"><div class="wrap">
+  <div class="head"><h2>Travel guide</h2><p>How to reach Thanjavur, when to go and what to follow at the temples.</p></div>
+  <div class="steps" id="seasons"></div>
+  <div class="head" style="margin-top:56px"><h2 style="font-size:28px">Visitor etiquette</h2></div>
+  <div class="steps" id="etiq"></div>
+</div></section>
+
+<section id="contact"><div class="wrap contact">
+  <div>
+    <div class="head" style="margin-bottom:0"><h2>Contact and enquiries</h2><p>Ask for a guide, check temple timings or send feedback.</p></div>
+    <figure class="ph" style="margin-top:24px" data-cap="Thanjavur Maratha Palace"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tanjore%20palace1.jpg?width=1000" data-f="contact-palace.jpg" alt="Thanjavur Maratha Palace" referrerpolicy="no-referrer"></figure>
+    <ul class="help">
+      <li><span>Tourist helpline (toll-free)</span><b>1800-4253-1111</b></li>
+      <li><span>Police control</span><b>100 / 04362-230100</b></li>
+      <li><span>Ambulance</span><b>108</b></li>
+      <li><span>Railway enquiry</span><b>139</b></li>
+      <li><span>ASI Thanjavur office</span><b>04362-274476</b></li>
+    </ul>
+  </div>
+  <form id="enq">
+    <label>Your name<input required name="n"></label>
+    <div class="two">
+      <label>Email<input type="email" required></label>
+      <label>Phone / WhatsApp<input type="tel" required></label>
+    </div>
+    <div class="two">
+      <label>Visit date<input type="date"></label>
+      <label>Travelers<select><option>1–2</option><option>3–5</option><option>6–15</option><option>16+</option></select></label>
+    </div>
+    <label>Main interest<select><option>Chola architecture and history</option><option>Festivals and music</option><option>Paintings and bronze crafts</option><option>Temple pilgrimage</option></select></label>
+    <label>Questions<textarea rows="4"></textarea></label>
+    <button class="btn" type="submit">Send enquiry</button>
+    <p id="msg" role="status"></p>
+  </form>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div><h4>Explore Tanjore</h4><p>Heritage and culture of Thanjavur, Tamil Nadu, India.</p></div>
+  <div><h4>Explore</h4><a href="#attractions">Attractions</a><a href="#culture">Culture and crafts</a><a href="#food">Food</a><a href="#gallery">Gallery</a></div>
+  <div><h4>Visitors</h4><a href="#travel-guide">How to reach</a><a href="#events">Festival calendar</a><a href="#contact">Book a guide</a></div>
+  <p class="copy">Photos: Wikimedia Commons contributors, used under their open licences. © 2026 Explore Tanjore. யாதும் ஊரே யாவரும் கேளிர் – To us all towns are our own, all people our kin.</p>
+</div></footer>
+
+<div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="Photo preview">
+  <button id="lbx" aria-label="Close">×</button>
+  <figure class="ph" id="lbph"><img alt=""></figure>
+</div>
+
+<script>
+/* Photos go in an "images" folder next to this file. Any missing photo shows a painted placeholder with its caption. */
+/* Photos from Wikimedia Commons (verified file names). If one fails to load, the page tries images/<name>, then shows a placeholder. */
+const T='Brihadisvara Temple - Thanjavur peruvudaiyar kovil ttkcvrvb122k23iph ';
+const COMMONS={
+ 'hero-brihadeeswarar.jpg':'Brihadisvara Temple, Thanjavur (50074283751).jpg',
+ 'brihadeeswarar.jpg':'Brihadisvara Temple, Thanjavur (50074283866).jpg',
+ 'temple-gopuram.jpg':'Brihadesvara Temple, Tanjavur, India 02.jpg',
+ 'court.jpg':'1-Brihadeeswara Temple- court -Thanjavur-Tamilnadu 08.jpg',
+ 'temple-side.jpg':'Thanjavur Brihadeeswara Temple side view.JPG',
+ 'tanjore-painting.jpg':'Tanjore Paintings Venkateshwara.jpg',
+ 'dancing-doll.jpg':'A Tanjore doll.jpg',
+ 'veena.jpg':'Veena (close view).jpg',
+ 'veena-2.jpg':'Vijayanagara veena- indian traditional musical instrument.jpg',
+ 'chola-bronze.jpg':'Nataraja The Lord of Dance from Thanjavur Palace.jpg',
+ 'banana-leaf-meal.jpg':'A Thali, famous South Indian meal served on a banana leaf.jpg',
+ 'degree-coffee.jpg':'Filter Kaapi at Sarvana Bhavan Restaurant, Chennai, Tamil Nadu.jpg',
+ 'bharatanatyam.jpg':'Brihadeeshwara Temple during Brahan Natyanjali.jpg',
+ 'dance-1.jpg':'Thanjavur, Brihadishwara Temple, dance (6851706080).jpg',
+ 'dance-2.jpg':'Thanjavur, Brihadishwara Temple, dance (6997878075).jpg',
+ 'dance-1000.jpg':'Thajai1000amAandu 1000Pernadanam.JPG',
+ 'pongal.jpg':'Thanjavur Big Temple Entrance.jpg',
+ 'chithirai-car.jpg':'Gopuram of the Brihadisvara Temple, Thanjavur, Tamil Nadu, India (2016)03.jpg',
+ 'tyagaraja.jpg':'Vijayanagara veena- indian traditional musical instrument.jpg',
+ 'schwartz-church.jpg':'Tanjore palace1.jpg',
+ 'sivaganga-park.jpg':T+'(66).jpg',
+ 'thiruvaiyaru.jpg':'Vijayanagara veena- indian traditional musical instrument.jpg',
+ 'sunrise.jpg':'1000 years Old Thanjavur Brihadeeshwara Temple View at Sunrise.jpg',
+ 'maratha-palace.jpg':'Tanjore palace1.jpg',
+ 'contact-palace.jpg':'Tanjore palace1.jpg',
+ 'saraswathi-mahal.jpg':'Saraswathi mahal library.jpg',
+ 'winter-season.jpg':T+'(468).jpg',
+ 'summer-season.jpg':T+'(494).jpg',
+ 'monsoon-season.jpg':T+'(285).jpg',
+ 'dress-code.jpg':T+'(389).jpg',
+ 'footwear.jpg':T+'(390).jpg',
+ 'photography.jpg':T+'(391).jpg'
+};
+const SEARCH={'ashoka-halwa.jpg':'Ashoka halwa'};
+const src=f=>COMMONS[f]?'https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(COMMONS[f])+'?width=1000':'images/'+f;
+const P=(f,cap,alt)=>`<figure class="ph" data-cap="${cap}"><img ${SEARCH[f]?'':'src="'+src(f)+'"'} data-f="${f}" alt="${alt||cap}" loading="lazy" referrerpolicy="no-referrer"></figure>`;
+const card=(f,t,tag,txt,meta)=>`<article class="card">${P(f,t)}<div class="body"><span class="tag">${tag}</span><h3>${t}</h3><p>${txt}</p>${meta?`<div class="meta">${meta}</div>`:''}</div></article>`;
+
+const attractions=[
+ ['brihadeeswarar.jpg','Brihadeeswarar Temple','UNESCO heritage','Rajaraja Chola\'s granite temple, topped by a 216 ft vimana and a single-stone capstone.','Open 6 AM–8:30 PM'],
+ ['maratha-palace.jpg','Thanjavur Maratha Palace','Palace','Royal durbar hall, art gallery and the Chola bronze collection.','Open 9 AM–6 PM'],
+ ['saraswathi-mahal.jpg','Saraswathi Mahal Library','Library','One of Asia\'s oldest libraries, with palm-leaf manuscripts in many languages.','Open 10 AM–5:30 PM'],
+ ['schwartz-church.jpg','Schwartz Church','Heritage','An 18th-century church built in the Maratha period by Rajah Serfoji.','Inside the Fort area'],
+ ['sivaganga-park.jpg','Sivaganga Park and Tank','Park','A tank and garden beside the Big Temple, good for an evening walk.','Open 6 AM–8 PM'],
+ ['thiruvaiyaru.jpg','Thiruvaiyaru and the Kaveri','Day trip','The river town of Saint Tyagaraja, about 13 km from Thanjavur.','13 km']
+];
+const events=[
+ ['pongal.jpg','Pongal harvest festival','January','Kolams, sugarcane and fresh pongal at the Big Temple during the harvest festival.'],
+ ['tyagaraja.jpg','Tyagaraja Aradhana','January','Thousands of Carnatic musicians gather at Thiruvaiyaru to sing Tyagaraja\'s kritis.'],
+ ['chithirai-car.jpg','Chithirai temple car festival','April','The Big Temple chariot is pulled through the streets by thousands of devotees.'],
+ ['bharatanatyam.jpg','Bharatanatyam evenings','December','Classical dance performances under the stars during the Margazhi season.']
+];
+const culture=[
+ ['tanjore-painting.jpg','Tanjore gold-foil paintings','Painting','Gesso relief, real gold foil and inlaid stones on wood panels of Krishna and other deities.'],
+ ['dancing-doll.jpg','Thalaiyatti bommai dolls','GI tag','Papier-mâché dolls that nod and sway on a rounded base.'],
+ ['veena.jpg','Saraswati veena','GI tag','Hand-carved from a single block of jackfruit wood, the way it has been made for centuries.'],
+ ['chola-bronze.jpg','Chola bronzes','Lost-wax casting','Nataraja and other deities cast by the lost-wax method, still made in nearby Swamimalai.']
+];
+const food=[
+ ['banana-leaf-meal.jpg','Banana leaf meal','Elai saapadu','Rice, sambar, rasam, poriyal and payasam served on a fresh banana leaf.'],
+ ['degree-coffee.jpg','Kumbakonam degree coffee','Drink','Frothy filter coffee made with fresh milk, served in a steel tumbler and davara.'],
+ ['ashoka-halwa.jpg','Thiruvaiyaru Ashoka halwa','Sweet','A ghee-rich moong dal halwa that is the town\'s best-known sweet.']
+];
+const gallery=[
+ ['Temples','brihadeeswarar.jpg','Big Temple vimana'],['Temples','temple-gopuram.jpg','Temple gopuram'],['Temples','court.jpg','Temple courtyard'],['Temples','sunrise.jpg','Big Temple at sunrise'],
+ ['Temples','maratha-palace.jpg','Maratha Palace'],['Temples','temple-side.jpg','Big Temple, side view'],['Temples','saraswathi-mahal.jpg','Saraswathi Mahal Library'],
+ ['Art','tanjore-painting.jpg','Tanjore painting'],['Art','chola-bronze.jpg','Nataraja bronze'],['Art','veena.jpg','Saraswati veena'],['Art','dancing-doll.jpg','Thanjavur doll'],
+ ['Festivals','bharatanatyam.jpg','Brahan Natyanjali'],['Festivals','dance-1.jpg','Dance at the Big Temple'],['Festivals','dance-2.jpg','Dance festival'],['Festivals','dance-1000.jpg','Thousand-dancer performance'],
+ ['Food','banana-leaf-meal.jpg','Banana leaf meal'],['Food','degree-coffee.jpg','Filter coffee']
+];
+const seasons=[
+ ['winter-season.jpg','Winter, October to March','20–28 °C','Best for walking tours and temple visits. Tyagaraja Aradhana and Pongal fall in this season.'],
+ ['monsoon-season.jpg','Monsoon, July to September','24–32 °C','Green paddy fields and full river channels, with cooler evenings.'],
+ ['summer-season.jpg','Summer, April to June','30–39 °C','Go early (6–9 AM) or near sunset. The Chithirai car festival is in April.']
+];
+const etiq=[
+ ['dress-code.jpg','Temple dress code','Required','Wear modest, traditional clothes. Dhotis or trousers for men, sarees or salwars for women. No shorts or sleeveless tops.'],
+ ['footwear.jpg','Footwear','Free counters','Leave footwear at the token counters near the Big Temple\'s eastern entrance.'],
+ ['photography.jpg','Photography','Allowed outside','Photos are fine in courtyards, gardens and palace grounds. Not inside the sanctum.']
+];
+
+attrGrid.innerHTML=attractions.map(a=>card(a[0],a[1],a[2],a[3],a[4])).join('');
+evGrid.innerHTML=events.map(e=>`<article class="card event">${P(e[0],e[1])}<div class="body"><span class="date">${e[2]}</span><h3>${e[1]}</h3><p>${e[3]}</p></div></article>`).join('');
+cultGrid.innerHTML=culture.map(a=>card(...a)).join('');
+foodGrid.innerHTML=food.map(a=>card(...a)).join('');
+seasons.innerHTML=seasons.map(s=>`<article class="card season">${P(s[0],s[1])}<div class="body"><span class="deg">${s[2]}</span><h3>${s[1]}</h3><p>${s[3]}</p></div></article>`).join('');
+document.getElementById('etiq').innerHTML=etiq.map(a=>card(...a)).join('');
+
+const cats=['All',...new Set(gallery.map(g=>g[0]))];
+filters.innerHTML=cats.map((c,i)=>`<button type="button" aria-pressed="${i==0}" data-c="${c}">${c}</button>`).join('');
+function showGal(c){galGrid.innerHTML=gallery.filter(g=>c=='All'||g[0]==c).map(g=>P(g[1],g[2]).replace('<figure','<figure tabindex="0" role="button"')).join('');hook();}
+filters.onclick=e=>{const b=e.target.closest('button');if(!b)return;[...filters.children].forEach(x=>x.setAttribute('aria-pressed',x==b));showGal(b.dataset.c)};
+function openLb(f){const i=f.querySelector('img');lbph.dataset.cap=f.dataset.cap;lbph.className='ph';const li=lbph.querySelector('img');li.src=i.currentSrc||i.src;li.alt=i.alt;li.style.display='';lb.classList.add('on')}
+galGrid.onclick=e=>{const f=e.target.closest('.ph');if(f)openLb(f)};
+galGrid.onkeydown=e=>{if(e.key=='Enter'){const f=e.target.closest('.ph');if(f)openLb(f)}};
+lbx.onclick=()=>lb.classList.remove('on');
+lb.onclick=e=>{if(e.target==lb)lb.classList.remove('on')};
+document.addEventListener('keydown',e=>{if(e.key=='Escape')lb.classList.remove('on')});
+
+/* if a photo is missing, mark its slot so the painted placeholder shows */
+async function lookup(i){
+  const f=i.dataset.f, fail=()=>{ if(!i.dataset.tried){i.dataset.tried=1;i.src='images/'+f;} else i.parentElement.classList.add('nophoto'); };
+  i.addEventListener('error',fail);
+  try{
+    const q=encodeURIComponent(SEARCH[f]);
+    const r=await fetch('https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch='+q+'&gsrnamespace=6&gsrlimit=8&prop=imageinfo&iiprop=url|mime&iiurlwidth=1000&format=json&origin=*');
+    const d=await r.json();
+    const pages=Object.values((d.query&&d.query.pages)||{}).sort((a,b)=>a.index-b.index);
+    const hit=pages.find(p=>p.imageinfo&&/^image\/(jpeg|png)/.test(p.imageinfo[0].mime));
+    if(hit){ i.src=hit.imageinfo[0].thumburl||hit.imageinfo[0].url; i.alt=SEARCH[f]; } else fail();
+  }catch(e){ fail(); }
+}
+function hook(){document.querySelectorAll('.ph img').forEach(i=>{
+  if(i.dataset.f&&SEARCH[i.dataset.f]&&!i.dataset.looked){ i.dataset.looked=1; lookup(i); return; }
+  const bad=()=>{ if(!i.dataset.tried&&i.dataset.f){i.dataset.tried=1;i.src='images/'+i.dataset.f;} else i.parentElement.classList.add('nophoto'); };
+  i.addEventListener('error',bad);
+  if(i.complete&&i.naturalWidth===0&&!i.dataset.tried)bad();
+});}
+showGal('All');hook();
+
+enq.onsubmit=e=>{e.preventDefault();msg.textContent='Thank you. Your enquiry is ready to send; connect this form to your email or backend to receive it.';enq.reset()};
+</script>
+</body>
+</html>
